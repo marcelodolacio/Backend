@@ -24,7 +24,6 @@ let tasks = [];
     app.post('/login', (request, response) => { 
    
     if(request.body.username !== 'usuario' || request.body.password !== "123456"){
-        console.log("DEU MERDA");
         response.status(401).send({message: 'Error in username or password'});
     }else{
         var token = jwt.sign({ username: 'usuario', role: 'admin' }, SEGREDO, { expiresIn: '1h'});
@@ -58,10 +57,7 @@ let tasks = [];
     //EXERCICIO 7 
     app.put('/tasks/:id', (request, response) => { 
         const body = request.body;
-        const id = request.params.id;
-        console.log("id: "+id)
         const task = tasks.find(t => t.id == request.params.id);
-        console.log(task)
         if (task) {
             task.title = body.title; 
             task.description = body.description;
@@ -75,12 +71,7 @@ let tasks = [];
 
     //EXERCICIO 8     
     app.get('/tasks/:id', (request, response) => { 
-        console.log("ENTREEEEEEI");
-        const id = request.params.id;
-        console.log("id: "+id)
         const task = tasks.find(t => t.id == request.params.id);
-        console.log("ENTREEEEEEI");
-        console.log(task)
         if (task) { 
             response.status(404).send(task);
             } else { 
