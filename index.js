@@ -50,7 +50,7 @@ let tasks = [];
     //EXERCICIO 6     
     app.get('/tasks', (request, response) => { 
         console.log(tasks); 
-        response.status(201); 
+        response.status(200); 
         response.send(tasks);
     });
 
@@ -63,7 +63,7 @@ let tasks = [];
             task.description = body.description;
             task.isDone = body.isDone; 
             task.isPriority = body.isPriority; 
-            response.status(404).send(task);
+            response.status(200).send(task);
             } else { 
                 response.status(404); response.send();
             }
@@ -73,7 +73,7 @@ let tasks = [];
     app.get('/tasks/:id', (request, response) => { 
         const task = tasks.find(t => t.id == request.params.id);
         if (task) { 
-            response.status(404).send(task);
+            response.status(200).send(task);
             } else { 
                 response.status(404); response.send();
             }
